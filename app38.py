@@ -448,3 +448,39 @@ with tab4:
     
     st.line_chart(df["예상 자산($)"])
     st.info(f"💡 현재 속도(연 {cagr}% 팽창) 유지 시, 배당 복리만으로 **100만 불($1,000,000) 요새** 달성 및 **자녀 독립 시드(각 5억 원)** 분리가 가능한 시점을 시각적으로 추적합니다.")
+
+# ══════════════════════════════════════════
+# 👑 80억 그랜드 마스터플랜 비전 (영구 각인)
+# ══════════════════════════════════════════
+st.markdown("<br><br>", unsafe_allow_html=True)
+st.markdown("---")
+st.markdown("## 👑 80억 그랜드 마스터플랜 비전 (2026~2030)")
+
+col_v1, col_v2 = st.columns(2)
+
+with col_v1:
+    st.markdown("""
+    <div style='background-color: #1e293b; padding: 20px; border-radius: 10px; height: 260px; border-left: 5px solid #3b82f6;'>
+    <h4 style='margin-top: 0px;'>⚔️ 1단계: 40억 기동 함대 완성</h4>
+    <ul style='line-height: 2.0;'>
+        <li><b>국내 방어선:</b> 삼성전자 등 국내 주식 <b>20억 영구 고수</b></li>
+        <li><b>달러 보급선:</b> 기계적 스위칭으로 미국 배당 ETF <b>100만 불 달성</b></li>
+        <li><b>승계 전리품:</b> 마르지 않는 현금흐름으로 <b>자녀 각 5억 원 시드 조달</b></li>
+    </ul>
+    </div>
+    """, unsafe_allow_html=True)
+
+with col_v2:
+    st.markdown("""
+    <div style='background-color: #1e293b; padding: 20px; border-radius: 10px; height: 260px; border-left: 5px solid #eab308;'>
+    <h4 style='margin-top: 0px;'>🗺️ 2단계: 80억 실물 제국 타임라인</h4>
+    <ul style='line-height: 1.8;'>
+        <li><b>2026~2027:</b> 경부고속도로 착공 ➔ 서초 일대 기대감 선반영</li>
+        <li><b>2028:</b> 롯데칠성 부지 착공 ➔ 주변 부동산 본격 상승</li>
+        <li><b>2029~2030:</b> 연금 수령 시작 + ETF 배당 복리(DRIP) 무한 궤도</li>
+        <li><b style='color:#facc15;'>2030: 법인 전환 완성 + 부동산 개발 효과 ➔ 80억대 후반 달성</b></li>
+    </ul>
+    </div>
+    """, unsafe_allow_html=True)
+
+st.caption("⚓ **조타수의 맹세:** 어떠한 시장의 폭풍우가 몰아쳐도, 이 나침반이 가리키는 사령관님의 최종 목적지는 결코 변하지 않습니다.")
