@@ -7,7 +7,7 @@ from datetime import datetime
 import plotly.graph_objects as go
 
 # ─────────────────────────────────────────
-# 1. 보유 수량 설정 (수량은 고정)
+# 1. 보유 수량 및 전술 변수 설정
 # ─────────────────────────────────────────
 REAL_SEC_COUNT   = 868
 REAL_SEC_P_COUNT = 7248
@@ -19,6 +19,9 @@ IONQ_COUNT = 215
 
 CORE_TARGET_KRW  = 20 * 1e8    # 코어 20억
 SELL_TRIGGER_KRW = 21.5 * 1e8  # 매도 트리거 21.5억
+
+# ★ [신규 탑재] 20회 스위칭 카운터 (스위칭 1회 완료 시마다 아래 숫자를 1씩 올리십시오)
+COMPLETED_SWITCHES = 0
 
 # ─────────────────────────────────────────
 # 2. 데이터 수집
@@ -140,13 +143,12 @@ st.divider()
 tab1, tab2, tab3, tab4 = st.tabs(["코어 게이지", "종목별 수익률", "삼전우 시나리오", "❄️ 배당 스노우볼"])
 
 # ══════════════════════════════════════════
-# TAB 1: 코어 게이지 & 조타수 (마일스톤 알림 이식 영역)
+# TAB 1: 코어 게이지 & 조타수
 # ══════════════════════════════════════════
 with tab1:
     col_g, col_b = st.columns([3, 2])
 
     with col_g:
-        # 기존 게이지 차트 포맷 유지
         fig_gauge = go.Figure(go.Indicator(
             mode="gauge+number+delta",
             value=sec_eval_bn,
@@ -182,7 +184,6 @@ with tab1:
         fig_gauge.update_layout(height=380, margin=dict(t=60, b=20))
         st.plotly_chart(fig_gauge, use_container_width=True)
         
-        # ── [신규 전술 모듈] 그래프 하단 마일스톤 도달 알림판 ──
         st.markdown("### 🏁 삼전 코어 돌파 마일스톤")
         
         milestones = [21.0, 22.0, 23.0, 24.0, 25.0]
@@ -211,6 +212,28 @@ with tab1:
                         unsafe_allow_html=True
                     )
 
+        st.markdown("<br>", unsafe_allow_html=True)
+        
+        st.markdown("#### 🔄 1억 커팅 앤 스위칭 진척도 (목표: 달러 비중 50%)")
+
+        switch_amount_krw = COMPLETED_SWITCHES * 100_000_000
+        schd_yield = 0.035
+        annual_dividend_krw = switch_amount_krw * schd_yield
+        monthly_dividend_krw = annual_dividend_krw / 12
+
+        progress_ratio = COMPLETED_SWITCHES / 20.0
+        st.progress(progress_ratio)
+
+        col_s1, col_s2, col_s3 = st.columns(3)
+        with col_s1:
+            st.metric("타격 진척도", f"{COMPLETED_SWITCHES} / 20 회")
+        with col_s2:
+            st.metric("달러 이전 자산", f"{COMPLETED_SWITCHES}억 원")
+        with col_s3:
+            st.metric("🌊 추가 확정 월 배당", f"약 {int(monthly_dividend_krw):,} 원")
+
+        st.info(f"💡 **조타수 브리핑:** 현재 **{COMPLETED_SWITCHES}억 원**이 안전하게 달러 요새로 스위칭되었습니다. 목표 달성 시점까지 **{20 - COMPLETED_SWITCHES}회** 남았습니다.")
+
     with col_b:
         st.markdown("### 🧭 조타수 브리핑")
 
@@ -230,7 +253,6 @@ with tab1:
 
         st.divider()
 
-        # 트리거 신호등
         st.markdown("**🚦 매도 트리거 상태**")
 
         triggers = [
