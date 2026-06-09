@@ -72,7 +72,7 @@ with st.sidebar:
     st.markdown("**🇺🇸 미국 ETF (USD)**")
     voo_avg  = st.number_input("VOO 평균단가",  min_value=1.0, value=634.91,  step=0.01, format="%.2f")
     qqqm_avg = st.number_input("QQQM 평균단가", min_value=1.0, value=253.16,  step=0.01, format="%.2f")
-    schd_avg = st.number_input("SCHD 평균단가", min_value=1.0, value=32.27,   step=0.01, format="%.2f")
+    schd_avg = st.number_input("SCHD 평균단가", min_value=1.0, value=32.29,   step=0.01, format="%.2f")
     ionq_avg = st.number_input("IONQ 평균단가", min_value=1.0, value=32.05,   step=0.01, format="%.2f")
 
 ETF_AVG = {
